@@ -27,5 +27,5 @@ def category1():
 
 
 @pytest.fixture
-def category_2():
-    return Category('Фрукты', 'Плодовые культуры', ['Яблоко', 'Груша'])
+def product4():
+    return Product('Xiaomi', '1024GB, Красный', 35000.0, 2)
