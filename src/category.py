@@ -16,8 +16,8 @@ class Category:
         Category.product_count += len(products) if products else 0
 
     @property
-    '''Метод для вывода списка товаров в формате строки'''
     def products(self):
+        '''Метод для вывода списка товаров в формате строки'''
         products_str = ""
         for prod in self.__products:
             products_str += f"{prod.name}, {prod.price} руб. Остаток: {prod.quantity} шт.\n"

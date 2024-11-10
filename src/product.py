@@ -11,8 +11,8 @@ class Product:
         self.quantity = quantity
 
     @classmethod
-    '''Метод, принимающий на вход параметры товара в словаре и возвращает созданный объект класса'''
     def new_product(cls, prod_param: dict):
+        '''Метод, принимающий на вход параметры товара в словаре и возвращает созданный объект класса'''
         name = prod_param["name"]
         description = prod_param["description"]
         price = prod_param["price"]
@@ -24,8 +24,8 @@ class Product:
         return self.__price
 
     @price.setter
-    '''Изменение цены, если она соответствует условиям'''
     def price(self, new_price: int):
+        '''Изменение цены, если она соответствует условиям'''
         if new_price <= 0:
             print("Цена не должна быть нулевая или отрицательная")
             return
