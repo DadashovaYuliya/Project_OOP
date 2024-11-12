@@ -1,7 +1,8 @@
+from src.product import Product
 from tests.conftest import product1, product2, product3
 
 
-def test_category_init(category1):
+def test_category_init(category1, product1, product2, product3):
     assert category1.name == 'Смартфоны'
     assert category1.description == 'Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни'
     assert category1.products_list == [product1, product2, product3]
@@ -18,5 +19,5 @@ def test_products_str(category1):
 
 def test_add_product(category1, product4):
     assert len(category1.products_list) == 3
-    category1.products.add_product(product4)
+    category1.products_list.append(product4)
     assert len(category1.products_list) == 4
