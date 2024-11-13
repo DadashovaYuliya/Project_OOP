@@ -20,12 +20,12 @@ def product3():
 
 
 @pytest.fixture
-def category1():
+def category1(product1, product2, product3):
     return Category('Смартфоны',
                     'Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни',
                     [product1, product2, product3])
 
 
 @pytest.fixture
-def category_2():
-    return Category('Фрукты', 'Плодовые культуры', ['Яблоко', 'Груша'])
+def product4():
+    return Product('Xiaomi', '1024GB, Красный', 35000.0, 2)
