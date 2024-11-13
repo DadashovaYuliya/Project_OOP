@@ -1,3 +1,6 @@
+from src.product import Product
+
+
 def test_product_init(product1, product2, product3):
     assert product1.name == 'Samsung Galaxy S23 Ultra'
     assert product1.description == '256GB, Серый цвет, 200MP камера'
@@ -13,3 +16,24 @@ def test_product_init(product1, product2, product3):
     assert product3.description == '1024GB, Синий'
     assert product3.price == 31000.0
     assert product3.quantity == 14
+
+
+def test_new_product():
+    product = Product.new_product(
+        {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 180000.0,
+         "quantity": 5})
+    product.name = "Samsung Galaxy S23 Ultra"
+    product.description = "256GB, Серый цвет, 200MP камера"
+    product.price = 180000.0
+    product.quantity = 5
+
+
+def test_new_price(capsys):
+    product = Product.new_product(
+        {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 180000.0,
+         "quantity": 5})
+    product.price = 0
+    message = capsys.readouterr()
+    assert message.out.strip() == 'Цена не должна быть нулевая или отрицательная'
+    product.price = 200000.0
+    assert product.price == 200000.0
