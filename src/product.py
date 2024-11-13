@@ -10,9 +10,16 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
+    def __str__(self):
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other):
+        result = (self.price * self.quantity) + (other.price * other.quantity)
+        return result
+
     @classmethod
     def new_product(cls, prod_param: dict):
-        '''Метод, принимающий на вход параметры товара в словаре и возвращает созданный объект класса'''
+        """Метод, принимающий на вход параметры товара в словаре и возвращает созданный объект класса"""
         name = prod_param["name"]
         description = prod_param["description"]
         price = prod_param["price"]
@@ -25,7 +32,7 @@ class Product:
 
     @price.setter
     def price(self, new_price: int):
-        '''Изменение цены, если она соответствует условиям'''
+        """Изменение цены, если она соответствует условиям"""
         if new_price <= 0:
             print("Цена не должна быть нулевая или отрицательная")
             return
