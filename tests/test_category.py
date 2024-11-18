@@ -18,10 +18,12 @@ def test_products_str(category1):
                                   'Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт.\n')
 
 
-def test_add_product(category1, product4):
+def test_add_product(category1, smartphone1, product_error):
     assert len(category1.products_list) == 3
-    category1.products_list.append(product4)
+    category1.add_product(smartphone1)
     assert len(category1.products_list) == 4
+    with pytest.raises(TypeError):
+        category1.add_product(product_error)
 
 
 def test_category_str(category1):
