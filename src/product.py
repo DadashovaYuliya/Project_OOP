@@ -14,8 +14,11 @@ class Product:
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other):
-        result = (self.price * self.quantity) + (other.price * other.quantity)
-        return result
+        """Метод сложения двух товаров (произведение цены на количество), при условии нахождения товара в одном классе"""
+        if type(other) is self.__class__:
+            result = (self.price * self.quantity) + (other.price * other.quantity)
+            return result
+        raise TypeError
 
     @classmethod
     def new_product(cls, prod_param: dict):
