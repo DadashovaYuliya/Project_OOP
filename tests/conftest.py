@@ -63,3 +63,8 @@ def lawn_grass2():
 @pytest.fixture
 def product_error():
     return 'Трава'
+
+
+@pytest.fixture
+def category_without_product():
+    return Category('Пустая','Без товаров',[])
