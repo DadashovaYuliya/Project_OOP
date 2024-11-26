@@ -1,3 +1,4 @@
+from src.exceptions import ZeroQuantityProduct
 from src.product import Product
 
 
@@ -36,7 +37,22 @@ class Category:
     def add_product(self, product: Product):
         """Метод для добавления продукта в атрибут products"""
         if isinstance(product, Product):
-            self.__products.append(product)
-            Category.product_count += 1
+            try:
+                if product.price == 0:
+                    raise ZeroQuantityProduct("Нельзя добавить товар с нулевым количеством")
+            except ZeroQuantityProduct as e:
+                print(str(e))
+            else:
+                self.__products.append(product)
+                Category.product_count += 1
+                print("Продукт успешно добавлен")
+            finally:
+                print("Обработка добавления товара завершена")
         else:
             raise TypeError
+
+    def middle_price(self):
+        try:
+            return round(sum(product.price for product in self.__products)/len(self.__products), 2)
+        except ZeroDivisionError:
+            return 0
