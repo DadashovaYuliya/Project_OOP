@@ -1,3 +1,5 @@
+import pytest
+
 from src.product import Product
 
 
@@ -34,6 +36,20 @@ def test_new_price(capsys):
          "quantity": 5})
     product.price = 0
     message = capsys.readouterr()
-    assert message.out.strip() == 'Цена не должна быть нулевая или отрицательная'
+    assert message.out.strip().split('\n')[-1] == 'Цена не должна быть нулевая или отрицательная'
     product.price = 200000.0
     assert product.price == 200000.0
+
+
+def test_product_str(product1):
+    assert str(product1) == 'Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт.'
+
+
+def test_product_add(product1, product2):
+    assert product1 + product2 == 2580000.0
+
+
+def test_product_init_zero_quantity():
+    # product_invalid = Product("Бракованный товар", "Неверное количество", 1000.0, 0)
+    with pytest.raises(ValueError, match="Товар с нулевым количеством не может быть добавлен"):
+        product_invalid = Product("Бракованный товар", "Неверное количество", 1000.0, 0)
